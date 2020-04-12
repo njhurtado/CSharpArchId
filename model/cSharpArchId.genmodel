@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/CSharpArchId/src-gen" creationIcons="false" editDirectory="/CSharpArchId.edit/src-gen"
+    editorDirectory="/CSharpArchId.editor/src-gen" modelPluginID="CSharpArchId" modelName="CSharpArchId"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>cSharpArchId.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="CSharpArchId" basePackage="co.edu.uniandes.archid.csharp.model"
+      disposableProviderFactory="true" ecorePackage="cSharpArchId.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cSharpArchId.ecore#//SimpleType">
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/bool"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/char"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/decimal"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/double"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/long"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/sbyte"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/short"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/uint"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/ulong"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/ushort"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/void"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/object"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//SimpleType/string"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cSharpArchId.ecore#//VisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/none"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/public"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/private"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/internal"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/internal_protected"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//VisibilityKind/private_protected"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cSharpArchId.ecore#//ModifierKind">
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/static"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/native"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/sinchronized"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/virtual"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/override"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/readonly"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/const"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/new"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//ModifierKind/none"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cSharpArchId.ecore#//InheritanceKind">
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//InheritanceKind/none"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//InheritanceKind/abstract"/>
+      <genEnumLiterals ecoreEnumLiteral="cSharpArchId.ecore#//InheritanceKind/sealed"/>
+    </genEnums>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Model/archives"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Model/compileUnits"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//EnumerationLiteral"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//Type"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Enumeration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Enumeration/enumLiterals"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ClassDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//ClassDeclaration/superClass"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//InterfaceDeclaration"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//PrimitiveType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//PrimitiveType/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Namespace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Namespace/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Namespace/enumerations"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//MethodParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//MethodParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//CompileUnit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//CompileUnit/elements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//CompileUnit/originalFilePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//CompileUnit/commentList"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//CompileUnit/typeDeclaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//CompileUnit/usings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//CompileUnit/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ElementRef"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//ASTNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//ASTNode/originalCompilationUnit"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Archive">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Archive/originalFilePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Archive/compileUnits"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//UsingDeclaration"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Comment/content"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//LineComment"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//BlockComment"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//AbstractTypeDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractTypeDeclaration/commentsBeforeBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractTypeDeclaration/commentsAfterBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractTypeDeclaration/bodyDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractTypeDeclaration/modifier"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//TypeDeclaration"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//TypeAcces"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//Expresion"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//BodyDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//BodyDeclaration/modifier"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Modifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Modifier/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Modifier/inheritance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Modifier/static"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Modifier/bodyDeclaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Modifier/annotations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//Modifier/modifier"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Annotation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//Annotation/typeacces"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//AbstractMethodDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodDeclaration/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodDeclaration/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodDeclaration/typeParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodDeclaration/thrownExceptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodDeclaration/returnType"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Block"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Statement"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//VariableDeclaration">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cSharpArchId.ecore#//VariableDeclaration/methodDeclaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//VariableDeclaration/type"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//SingleVariableDeclaration"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//TypeParameter"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//MethodDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//MethodDeclaration/localVariableDeclaration"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ConstructorDeclaration"/>
+    <genClasses image="false" ecoreClass="cSharpArchId.ecore#//AbstractMethodInvocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodInvocation/typeArguments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//AbstractMethodInvocation/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//MethodInvocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//MethodInvocation/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//Assignment"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ClassInstanceCreation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//ClassInstanceCreation/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cSharpArchId.ecore#//ClassInstanceCreation/expresion"/>
+    </genClasses>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ConstructorInvocation"/>
+    <genClasses ecoreClass="cSharpArchId.ecore#//ReturnType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cSharpArchId.ecore#//ReturnType/returnType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

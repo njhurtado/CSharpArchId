@@ -1,0 +1,12 @@
+
+operation cSharpArchId!TypeDeclaration getPath(): String {
+	var current;
+	current = self;
+	var path: String;
+	path = self.name + ".cs";
+	while(not current.eContainer().isTypeOf(cSharpArchId!Model)) {
+		path = current.eContainer().name + "/" + path;
+		current = current.eContainer();
+	}
+	return path;
+}

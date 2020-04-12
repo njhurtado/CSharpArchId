@@ -1,0 +1,16 @@
+import './queries.eol';
+pattern CamelCase
+	type: TypeDeclaration,
+	field: FieldDeclaration
+	from: type.name = field.getName() {	
+	onmatch {
+		var message : String;
+	 	message = "Nombre de clase invalido " + type.name;
+		message.println();
+	}
+}
+
+@cached
+operation FieldDeclaration getName() {
+	return self.fragments.at(0).name.firstToUpperCase();
+}

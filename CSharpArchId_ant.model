@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cSharpArchId:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cSharpArchId="http://www.example.org/cSharpArchId" name="CSharpModel">
+  <compileUnits name="drawdemo.cs" originalFilePath=".\rsc\parser_oracles\drawdemo.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="drawDemo">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Main">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="int"/>
+      </bodyDeclarations>
+      <modifier visibility="public" static="true"/>
+    </elements>
+    <usings name="System"/>
+  </compileUnits>
+  <compileUnits name="drawingobject.cs" originalFilePath=".\rsc\parser_oracles\drawingobject.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="DrawingObject">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Draw">
+        <modifier visibility="public" modifier="virtual"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier visibility="public"/>
+    </elements>
+    <usings name="System"/>
+  </compileUnits>
+  <compileUnits name="interface.cs" originalFilePath=".\rsc\parser_oracles\interface.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="IMyInterface">
+      <modifier/>
+    </elements>
+  </compileUnits>
+  <compileUnits name="interface_impl.cs" originalFilePath=".\rsc\parser_oracles\interface_impl.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="InterfaceImplementer">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Main">
+        <modifier/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier static="true"/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="IMyInterface"/>
+    </elements>
+  </compileUnits>
+  <compileUnits name="lcs.cs" originalFilePath=".\rsc\parser_oracles\lcs.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="Line">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Draw">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier visibility="public"/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="DrawingObject"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="Circle">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Draw">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier visibility="public"/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="DrawingObject"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="Square">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Draw">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier visibility="public"/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="DrawingObject"/>
+    </elements>
+    <usings name="System"/>
+  </compileUnits>
+  <compileUnits name="mystring.cs" originalFilePath=".\rsc\parser_oracles\mystring.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="OutputClass">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="myString">
+        <modifier visibility="private"/>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="string"/>
+      </bodyDeclarations>
+      <modifier/>
+    </elements>
+    <usings name="System"/>
+  </compileUnits>
+  <compileUnits name="parameters.cs" originalFilePath=".\rsc\parser_oracles\parameters.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="Address">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="name">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="string"/>
+      </bodyDeclarations>
+      <modifier/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="MethodParams">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Main">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier static="true"/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="case"/>
+    </elements>
+    <usings name="System"/>
+  </compileUnits>
+</cSharpArchId:Model>

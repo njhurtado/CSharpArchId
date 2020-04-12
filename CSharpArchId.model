@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cSharpArchId:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cSharpArchId="http://www.example.org/cSharpArchId" name="CSharpModel">
+  <compileUnits name="abstract_factory.cs" originalFilePath=".\rsc\design_patterns\abstract_factory.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="MainApp">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Main">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="factory1">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractFactory"/>
+        </localVariableDeclaration>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="client1">
+          <type xsi:type="cSharpArchId:ElementRef" name="Client"/>
+        </localVariableDeclaration>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="factory2">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractFactory"/>
+        </localVariableDeclaration>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="client2">
+          <type xsi:type="cSharpArchId:ElementRef" name="Client"/>
+        </localVariableDeclaration>
+      </bodyDeclarations>
+      <modifier/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="AbstractFactory">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductA">
+        <modifier visibility="public" inheritance="abstract"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductB">
+        <modifier visibility="public" inheritance="abstract"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier inheritance="abstract"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ConcreteFactory1">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductA">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductB">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractFactory"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ConcreteFactory2">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductA">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="AbstractProductB">
+        <modifier visibility="public" modifier="override"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractFactory"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="AbstractProductA">
+      <modifier inheritance="abstract"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="AbstractProductB">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Interact">
+        <modifier visibility="public" inheritance="abstract"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="a">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier inheritance="abstract"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ProductA1">
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ProductB1">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Interact">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="a">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractProductB"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ProductA2">
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="ProductB2">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Interact">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="a">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+        </parameters>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="factory">
+          <type xsi:type="cSharpArchId:ElementRef" name="AbstractFactory"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="AbstractProductB"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="Client">
+      <bodyDeclarations xsi:type="cSharpArchId:SingleVariableDeclaration" name="_abstractProductA">
+        <modifier visibility="private"/>
+        <type xsi:type="cSharpArchId:ElementRef" name="AbstractProductA"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:SingleVariableDeclaration" name="_abstractProductB">
+        <modifier visibility="private"/>
+        <type xsi:type="cSharpArchId:ElementRef" name="AbstractProductB"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:ConstructorDeclaration" name="Client">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Run">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="OtroMetodo">
+        <modifier visibility="public"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="str1">
+          <type xsi:type="cSharpArchId:ElementRef" name="String"/>
+        </parameters>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="str2">
+          <type xsi:type="cSharpArchId:ElementRef" name="String"/>
+        </parameters>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="str3">
+          <type xsi:type="cSharpArchId:ElementRef" name="String"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier/>
+    </elements>
+    <usings name="System"/>
+    <usings name="Otro"/>
+    <usings name="OtroMas"/>
+    <namespace name="DoFactory.GangOfFour.Abstract.Structural"/>
+  </compileUnits>
+  <compileUnits name="composite.cs" originalFilePath=".\rsc\design_patterns\composite.cs">
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="MainApp">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Main">
+        <modifier/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="name">
+          <type xsi:type="cSharpArchId:ElementRef" name="string"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="root">
+          <type xsi:type="cSharpArchId:ElementRef" name="CompositeElement"/>
+        </localVariableDeclaration>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="comp">
+          <type xsi:type="cSharpArchId:ElementRef" name="CompositeElement"/>
+        </localVariableDeclaration>
+        <localVariableDeclaration xsi:type="cSharpArchId:SingleVariableDeclaration" name="pe">
+          <type xsi:type="cSharpArchId:ElementRef" name="PrimitiveElement"/>
+        </localVariableDeclaration>
+      </bodyDeclarations>
+      <modifier/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="DrawingElement">
+      <bodyDeclarations xsi:type="cSharpArchId:SingleVariableDeclaration" name="_name">
+        <modifier visibility="protected"/>
+        <type xsi:type="cSharpArchId:ElementRef" name="string"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:ConstructorDeclaration" name="DrawingElement">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Add">
+        <modifier visibility="public" inheritance="abstract"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="d">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Remove">
+        <modifier visibility="public" inheritance="abstract"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="d">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Display">
+        <modifier visibility="public" inheritance="abstract"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="indent">
+          <type xsi:type="cSharpArchId:ElementRef" name="int"/>
+        </parameters>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="name">
+          <type xsi:type="cSharpArchId:ElementRef" name="string"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier inheritance="abstract"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="PrimitiveElement">
+      <bodyDeclarations xsi:type="cSharpArchId:ConstructorDeclaration" name="PrimitiveElement">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Add">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="c">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Remove">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="c">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Display">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="indent">
+          <type xsi:type="cSharpArchId:ElementRef" name="int"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+    </elements>
+    <elements xsi:type="cSharpArchId:ClassDeclaration" name="CompositeElement">
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="List">
+        <modifier visibility="private"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="name">
+          <type xsi:type="cSharpArchId:ElementRef" name="string"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:ConstructorDeclaration" name="CompositeElement">
+        <modifier visibility="public"/>
+        <returnType xsi:type="cSharpArchId:ReturnType"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Add">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="d">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Remove">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="d">
+          <type xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <bodyDeclarations xsi:type="cSharpArchId:MethodDeclaration" name="Display">
+        <modifier visibility="public" modifier="override"/>
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="indent">
+          <type xsi:type="cSharpArchId:ElementRef" name="int"/>
+        </parameters>
+        <returnType xsi:type="cSharpArchId:ReturnType" returnType="void"/>
+      </bodyDeclarations>
+      <modifier/>
+      <superClass xsi:type="cSharpArchId:ElementRef" name="DrawingElement"/>
+    </elements>
+    <usings name="System"/>
+    <usings name="System"/>
+    <usings name="Collections"/>
+    <usings name="Generic"/>
+    <namespace name="DoFactory.GangOfFour.Composite.RealWorld"/>
+  </compileUnits>
+</cSharpArchId:Model>
