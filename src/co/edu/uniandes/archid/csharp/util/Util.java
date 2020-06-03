@@ -61,6 +61,66 @@ public class Util {
 	}
 	
 	/**
+	 * Get the last index of a token with a given type
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static int getLastTokenIndex(final List<Token> tokens, final int tokenType, final int untiTokenType) {
+		int index = -1;
+		for(int i = 0; i < tokens.size(); i++) {
+			if(tokens.get(i).getType() == tokenType) {
+				index = i;
+			}
+			if(tokens.get(i).getType() == untiTokenType) {
+				break;
+			}
+		}
+		return index;
+	}
+	
+	/**
+	 * Get the tokens with a given type
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static List<Token> getTokensFromIndex(final List<Token> tokens, final int index) {
+		List<Token> tokensType = new ArrayList<>();
+		for(int i = index; i < tokens.size(); i++) {
+			tokensType.add(tokens.get(i));
+			
+		}
+		return tokensType;
+	}
+	
+	/**
+	 * Get the list of Lists of tokens with a begin token and a final token 
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static List<List<Token>> getTokensByRange(final List<Token> tokens, final int beginTokenType, final int endTokenType) {
+		List<List<Token>> tokensByType = new ArrayList<List<Token>>();
+		List<Token> part = null;
+		boolean add = false;
+		for (final Token token: tokens) {
+			if (token.getType() == beginTokenType) {
+				part = new ArrayList<Token>();
+				part.add(token);
+                add = true;
+            } else if(add) {
+            	part.add(token);
+            } else if (token.getType() == endTokenType) {
+				part.add(token);
+				tokensByType.add(part);
+				add = false;
+            }
+		}
+		return tokensByType;
+	}
+	
+	/**
 	 * Get the token before the one with the given type
 	 * @param tokens
 	 * @param tokenType
@@ -111,6 +171,41 @@ public class Util {
             }
 		}
 		return null;
+	}
+	
+	/**
+	 * Get the second token with the given type
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static Token getSecondTokenWithType(final List<Token> tokens, final int tokenType) {
+		int count = 0;
+		for (final Token token: tokens) {
+			if (token.getType() == tokenType) {
+				count++;
+            }
+			if(count == 2) {
+				return token;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the last token with the given type
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static Token getLastTokenWithType(final List<Token> tokens, final int tokenType) {
+		Token lastToken = null;
+		for (final Token token: tokens) {
+			if (token.getType() == tokenType) {
+				lastToken = token;
+            }
+		}
+		return lastToken;
 	}
 	
 	/**
@@ -184,6 +279,30 @@ public class Util {
 			
 			if (token.getType() == openingType) {
 				opened = true;
+            }
+		}
+		return tokensReturn;
+	}
+	
+	/**
+	 * Remove the tokens between openingType and closingType
+	 * @param tokens
+	 * @param tokenType
+	 * @return
+	 */
+	public static List<Token> removeTokensBetween(final List<Token> tokens, final int openingType, final int closingType) {
+		List<Token> tokensReturn = new ArrayList<Token>();
+		Boolean add = true;
+		for (Token token: tokens) {
+			if (token.getType() == openingType) {
+				add = false;
+            }
+			if (add) {
+				tokensReturn.add(token);
+			}
+			
+			if (token.getType() == closingType) {
+				add = true;
             }
 		}
 		return tokensReturn;

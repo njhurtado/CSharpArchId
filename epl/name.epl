@@ -1,16 +1,235 @@
 import './queries.eol';
-pattern CamelCase
-	type: TypeDeclaration,
-	field: FieldDeclaration
-	from: type.name = field.getName() {	
+
+pattern ClassNamePascalCase
+	type: TypeDeclaration
+	from: TypeDeclaration.all.select(type|type.name <> type.name.getName()) {	
 	onmatch {
 		var message : String;
-	 	message = "Nombre de clase invalido " + type.name;
+	 	message = "Invalid class name " + type.name;
 		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(1);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, type.path, "Class");
+	}
+}
+
+pattern MethodNamePascalCase
+	method: MethodDeclaration
+	from: MethodDeclaration.all.select(p|p.name <> p.name.getName()){	
+	onmatch {
+		var message : String;
+	 	message = "Invalid method name " + method.name;
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(2);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, method.path, "Class");
+	}
+}
+
+pattern ParamNameCamelCase
+	method: MethodDeclaration
+		guard: method.parameters -> select(p|p.name <> p.name.getCamelName())->notEmpty()
+	from: MethodDeclaration.all {	
+	onmatch {
+		var message : String;
+	 	message = "Invalid parameter name " + method.name;
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(3);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, method.path, "Class");
+	}
+}
+
+pattern OneClassPerFile
+	cu: CompileUnit 
+	from: CompileUnit.all.select(cu|cu.elements.size() > 1) {	
+	onmatch {
+		var message : String;
+	 	message = "File with more than one con mas de una clase " + cu.name;
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(10);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, cu.path, "Class");
+	}
+}
+
+/*pattern ControllersContainsUsing
+	cu: CompileUnit 
+	    guard: cu.namspace="Microsoft.eShopWeb.Web.Controllers" and cu.usings -> select(n|n.name = "Infrastructure")->isEmpty()
+	from: CompileUnit.all {
+	onmatch {
+		//from:  CompileUnit.all.select(cu|cu.elements -> select (f | (f.type.isTypeOf(ClassDeclaration) and not f.superClass.name = "Controller"))) {
+		var message : String;
+	 	message = "La clase " + cu.name + " no incluye el uso de Infraestructure";
+		message.println();
+	}
+}*/
+
+pattern ControllersImplementsInterface
+	cu: CompileUnit
+	  guard: cu.namspace="Microsoft.eShopWeb.Web.Controllers" and cu.elements -> select(e|e.isKindOf(TypeDeclaration) and e.superClass.name = "Controller")->isEmpty() 
+	from: CompileUnit.all {
+	onmatch {
+		//from:  CompileUnit.all.select(cu|cu.elements -> select (f | (f.type.isTypeOf(ClassDeclaration) and not f.superClass.name = "Controller"))) {
+		var message : String;
+	 	message = "La clase " + cu.name + " no extiende de Controller";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(11);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, cu.path, "Class");
+	}
+}
+
+pattern ControllersNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace="Microsoft.eShopWeb.Web.Controllers"
+	  from: CompileUnit.all,
+	  clase: ClassDeclaration 
+	  guard: cu.elements -> select(e|e.name.endsWith("Controller"))->isEmpty()
+	  from: cu.elements {
+	onmatch {
+		var message : String;
+	 	message = "La clase " + clase.name + " no tiene la convención de nombres para Controllers";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(5);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, cu.path, "Class");
+	}
+}
+
+pattern ServicesImplementsInterface
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Services") 
+	from: CompileUnit.all,
+	clase: ClassDeclaration
+	guard: cu.elements -> select(e|e.isKindOf(ClassDeclaration) and e.superClass.isDefined() 
+		and e.superClass.name = e.name.getServiceInterfaceName())->isEmpty()
+	  from: cu.elements  {
+	onmatch {
+		var message : String;
+	 	message = "Class " + clase.name + " doesn't implement its appropriate interface";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(13);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, clase.path, "Class");
+	}
+}
+
+pattern ServicesNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Services") 
+	from: CompileUnit.all,
+	clase: ClassDeclaration
+	guard: cu.elements -> select(e|e.name.endsWith("Service"))->isEmpty()
+	  from: cu.elements  {
+	onmatch {
+		//from:  CompileUnit.all.select(cu|cu.elements -> select (f | (f.type.isTypeOf(ClassDeclaration) and not f.superClass.name = "Controller"))) {
+		var message : String;
+	 	message = "La clase " + clase.name + " debe finalizar con el sufijo Service";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(4);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, clase.path, "Class");
+	}
+}
+
+pattern InterfaceNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Interfaces")
+	  from: CompileUnit.all,
+	  interf: InterfaceDeclaration 
+	  guard: cu.elements -> select(e|e.isKindOf(InterfaceDeclaration) and e.name.substring(0,1) = "I")->isEmpty()
+	  from: cu.elements {
+	onmatch {
+		var message : String;
+	 	message = "La interface " + interf.name + " no tiene la convención de nombres para Interfaces";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(6);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, interf.path, "Class");
+	}
+}
+
+pattern DataConfigNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Data.Config")
+	  from: CompileUnit.all,
+	  clase: ClassDeclaration 
+	  guard: cu.elements -> select(e|e.name.endsWith("Configuration") and e.isKindOf(ClassDeclaration) and e.superClass.name = "IEntityTypeConfiguration")->isEmpty()
+	  from: cu.elements {
+	onmatch {
+		var message : String;
+	 	message = "La clase " + clase.name + " no tiene la convención de nombres para configuraciones de datos";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(7);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, clase.path, "Class");
+	}
+}
+
+pattern EntityNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Identity") and cu.usings -> select(n|n.name = "Microsoft.AspNetCore.Identity")->isEmpty()
+	  from: CompileUnit.all,
+	  clase: ClassDeclaration 
+	  guard: cu.elements -> select(e|not e.name.endsWith("Identity"))->isEmpty()
+	  from: cu.elements {
+	onmatch {
+		var message : String;
+	 	message = "La clase " + clase.name + " no tiene la convención de nombres para entidades de datos";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(8);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, clase.path, "Class");
+	}
+}
+
+pattern SpecificationNameConvention
+	cu: CompileUnit
+	  guard: cu.namspace.endsWith("Specifications") 
+	  from: CompileUnit.all,
+	  clase: ClassDeclaration 
+	  guard: cu.elements -> select(e|e.name.endsWith("Specification"))->isEmpty()
+	  from: cu.elements {
+	onmatch {
+		var message : String;
+	 	message = "La clase " + clase.name + " no tiene la convención de nombres specifications";
+		message.println();
+		var rule: rulesModel!Rule;
+		rule = rulesModel!ReferenceArchitecture.all.first.findRule(9);
+		var issues = new Native("co.edu.uniandes.archid.tools.IssuesTool");
+		issues.addIssue(rule.id, clase.path, "Class");
 	}
 }
 
 @cached
-operation FieldDeclaration getName() {
-	return self.fragments.at(0).name.firstToUpperCase();
+operation String getName() : String {
+	return self.firstToUpperCase();
+}
+
+@cached
+operation String getCamelName() : String {
+	return self.firstToLowerCase();
+}
+
+@cached
+operation String getServiceInterfaceName() : String {
+	var name : String;
+	name = "I" + self;
+	if(self.indexOf("Cached") >= 0) {
+		name = "I" + self.substring(self.indexOf("Cached") + 6);
+	}
+	//name.println();
+	return name;
 }

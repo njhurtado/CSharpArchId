@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getTypeDeclaration <em>Type Declaration</em>}</li>
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getUsings <em>Usings</em>}</li>
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getNamspace <em>Namspace</em>}</li>
  * </ul>
  *
  * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage#getCompileUnit()
@@ -151,5 +152,31 @@ public interface CompileUnit extends NamedElement {
 	 * @generated
 	 */
 	void setNamespace(Namespace value);
+
+	/**
+	 * Returns the value of the '<em><b>Namspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Namspace</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Namspace</em>' attribute.
+	 * @see #setNamspace(String)
+	 * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage#getCompileUnit_Namspace()
+	 * @model
+	 * @generated
+	 */
+	String getNamspace();
+
+	/**
+	 * Sets the value of the '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getNamspace <em>Namspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Namspace</em>' attribute.
+	 * @see #getNamspace()
+	 * @generated
+	 */
+	void setNamspace(String value);
 
 } // CompileUnit

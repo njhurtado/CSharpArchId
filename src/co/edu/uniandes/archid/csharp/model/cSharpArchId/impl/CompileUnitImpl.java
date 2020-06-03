@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.CompileUnitImpl#getTypeDeclaration <em>Type Declaration</em>}</li>
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.CompileUnitImpl#getUsings <em>Usings</em>}</li>
  *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.CompileUnitImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.CompileUnitImpl#getNamspace <em>Namspace</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,6 +114,26 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 	 * @ordered
 	 */
 	protected Namespace namespace;
+
+	/**
+	 * The default value of the '{@link #getNamspace() <em>Namspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAMSPACE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNamspace() <em>Namspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected String namspace = NAMSPACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,6 +310,28 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getNamspace() {
+		return namspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNamspace(String newNamspace) {
+		String oldNamspace = namspace;
+		namspace = newNamspace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSharpArchIdPackage.COMPILE_UNIT__NAMSPACE,
+					oldNamspace, namspace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -326,6 +369,8 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 			return getUsings();
 		case CSharpArchIdPackage.COMPILE_UNIT__NAMESPACE:
 			return getNamespace();
+		case CSharpArchIdPackage.COMPILE_UNIT__NAMSPACE:
+			return getNamspace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -360,6 +405,9 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 		case CSharpArchIdPackage.COMPILE_UNIT__NAMESPACE:
 			setNamespace((Namespace) newValue);
 			return;
+		case CSharpArchIdPackage.COMPILE_UNIT__NAMSPACE:
+			setNamspace((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -390,6 +438,9 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 		case CSharpArchIdPackage.COMPILE_UNIT__NAMESPACE:
 			setNamespace((Namespace) null);
 			return;
+		case CSharpArchIdPackage.COMPILE_UNIT__NAMSPACE:
+			setNamspace(NAMSPACE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -415,6 +466,8 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 			return usings != null && !usings.isEmpty();
 		case CSharpArchIdPackage.COMPILE_UNIT__NAMESPACE:
 			return namespace != null;
+		case CSharpArchIdPackage.COMPILE_UNIT__NAMSPACE:
+			return NAMSPACE_EDEFAULT == null ? namspace != null : !NAMSPACE_EDEFAULT.equals(namspace);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -432,6 +485,8 @@ public class CompileUnitImpl extends NamedElementImpl implements CompileUnit {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (originalFilePath: ");
 		result.append(originalFilePath);
+		result.append(", namspace: ");
+		result.append(namspace);
 		result.append(')');
 		return result.toString();
 	}

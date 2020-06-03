@@ -3,9 +3,9 @@
 package co.edu.uniandes.archid.csharp.model.cSharpArchId.impl;
 
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage;
-import co.edu.uniandes.archid.csharp.model.cSharpArchId.ClassDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.Enumeration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.Namespace;
+import co.edu.uniandes.archid.csharp.model.cSharpArchId.TypeDeclaration;
 
 import java.util.Collection;
 
@@ -42,7 +42,7 @@ public class NamespaceImpl extends NamedElementImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassDeclaration> classes;
+	protected EList<TypeDeclaration> classes;
 
 	/**
 	 * The cached value of the '{@link #getEnumerations() <em>Enumerations</em>}' containment reference list.
@@ -78,9 +78,9 @@ public class NamespaceImpl extends NamedElementImpl implements Namespace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ClassDeclaration> getClasses() {
+	public EList<TypeDeclaration> getClasses() {
 		if (classes == null) {
-			classes = new EObjectContainmentEList<ClassDeclaration>(ClassDeclaration.class, this,
+			classes = new EObjectContainmentEList<TypeDeclaration>(TypeDeclaration.class, this,
 					CSharpArchIdPackage.NAMESPACE__CLASSES);
 		}
 		return classes;
@@ -142,7 +142,7 @@ public class NamespaceImpl extends NamedElementImpl implements Namespace {
 		switch (featureID) {
 		case CSharpArchIdPackage.NAMESPACE__CLASSES:
 			getClasses().clear();
-			getClasses().addAll((Collection<? extends ClassDeclaration>) newValue);
+			getClasses().addAll((Collection<? extends TypeDeclaration>) newValue);
 			return;
 		case CSharpArchIdPackage.NAMESPACE__ENUMERATIONS:
 			getEnumerations().clear();

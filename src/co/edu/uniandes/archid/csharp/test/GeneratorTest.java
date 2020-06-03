@@ -41,15 +41,20 @@ public class GeneratorTest {
 	private static final Integer FLUSH_LIMIT = Integer.valueOf(1 << FLUSH_LIMIT_SHIFT);
 	private static final String USER_DIR = "./rsc/csharp/";
 	public static void main(String[] args) {
-		pruebaVisitor();
+		pruebaVisitor(null);
 	}
 
-	private static void pruebaVisitor() {
+	public static void pruebaVisitor(String path) {
 		//File f = new File("./rsc/parser_oracles/lcs.cs");
 		//File f = new File("./rsc/design_patterns/abstract_factory.cs");
 		//String path = "./rsc/parser_oracles/";
-		String path = "./rsc/design_patterns/";
+		//String path = "./rsc/design_patterns/";
 		//String path = "./rsc/Infrastructure/";
+		//String path = "./rsc/ApplicationCore/Services";
+		//String path = "./rsc/ApplicationCore/";
+		//String path = "./rsc/eShopOnWeb-master/src";
+		//String path = "./rsc/Web/";
+		//String path = "./rsc/prueba/";
 		//File f = new File("./rsc/parser_oracles/drawdemo.cs");
 		//InputStream in;
 		try {
@@ -65,7 +70,7 @@ public class GeneratorTest {
 			CSharpArchIdFactory factory = CSharpArchIdFactory.eINSTANCE;
 			Model model = factory.createModel();
 			model.setName("CSharpModel");
-			processFiles(path, model);
+			processFiles(path, model, "eShopOnWeb-master");
 			
 			System.out.println(" modelo -> " + model);
 			Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -93,25 +98,25 @@ public class GeneratorTest {
 
 	}
 	
-	private static void processFiles(String path, Model model) {
+	private static void processFiles(String path, Model model, String projectName) {
 		File root = new File( path );
         File[] list = root.listFiles();
         if (list == null) return;
         for ( File f : list ) {
             if ( f.isDirectory() ) {
-            	processFiles(f.getAbsolutePath(), model );
+            	processFiles(f.getAbsolutePath(), model, projectName );
                 System.out.println( "Dir:" + f.getAbsoluteFile() );
             }else {
-            	if(f.getName().contains(".cs")) {
+            	if(f.getName().endsWith(".cs")) {
             		//solo procesa archivos con extensiion .cs
 	                System.out.println( "File:" + f.getAbsoluteFile() );
-	                procesFile(f, model);
+	                procesFile(f, model, projectName);
             	}
             }
         }
 	}
 	
-	private static void procesFile(File f, Model model) {
+	private static void procesFile(File f, Model model, String projectName) {
 		InputStream in = null;
 		try {
 			in = new FileInputStream(f);
@@ -120,7 +125,7 @@ public class GeneratorTest {
 			System.out.println(" parser -> " + parser.toString());
 			ParseTree tree = parser.compilation_unit();
 			final CSharpParserAdvancedVisitor<?> visitor =
-					new CSharpParserAdvancedVisitor<String>(model, f.getName(), f.getPath());
+					new CSharpParserAdvancedVisitor<String>(model, f.getName(), f.getPath(), projectName);
 			visitor.visit(tree);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

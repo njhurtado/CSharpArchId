@@ -1,10 +1,15 @@
 
-operation cSharpArchId!TypeDeclaration getPath(): String {
+operation rulesModel!ReferenceArchitecture findRule(id : Integer) : rulesModel!Rule{
+	return rulesModel!Rule.allInstances.selectOne(r | r.id = id);
+}
+
+
+operation csharpModel!Type getPath(): String {
 	var current;
 	current = self;
 	var path: String;
 	path = self.name + ".cs";
-	while(not current.eContainer().isTypeOf(cSharpArchId!Model)) {
+	while(not current.eContainer().isTypeOf(csharpModel!Model)) {
 		path = current.eContainer().name + "/" + path;
 		current = current.eContainer();
 	}

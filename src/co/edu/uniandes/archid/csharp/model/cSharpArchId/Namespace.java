@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Namespace extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
-	 * The list contents are of type {@link co.edu.uniandes.archid.csharp.model.cSharpArchId.ClassDeclaration}.
+	 * The list contents are of type {@link co.edu.uniandes.archid.csharp.model.cSharpArchId.TypeDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classes</em>' containment reference list isn't clear,
@@ -33,10 +33,10 @@ public interface Namespace extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Classes</em>' containment reference list.
 	 * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage#getNamespace_Classes()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ClassDeclaration> getClasses();
+	EList<TypeDeclaration> getClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Enumerations</b></em>' containment reference list.
@@ -49,7 +49,7 @@ public interface Namespace extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Enumerations</em>' containment reference list.
 	 * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage#getNamespace_Enumerations()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Enumeration> getEnumerations();

@@ -48,6 +48,10 @@ import co.edu.uniandes.archid.csharp.model.cSharpArchId.UsingDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.VariableDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.VisibilityKind;
 
+import org.eclipse.emf.ecore.EcorePackage;
+
+import org.eclipse.emf.ecore.impl.EcorePackageImpl;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -414,11 +418,19 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		EcorePackageImpl theEcorePackage = (EcorePackageImpl) (registeredPackage instanceof EcorePackageImpl
+				? registeredPackage
+				: EcorePackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theCSharpArchIdPackage.createPackageContents();
+		theEcorePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theCSharpArchIdPackage.initializePackageContents();
+		theEcorePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theCSharpArchIdPackage.freeze();
@@ -489,6 +501,15 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 	 */
 	public EAttribute getNamedElement_Name() {
 		return (EAttribute) namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElement_Path() {
+		return (EAttribute) namedElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -669,6 +690,15 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 	 */
 	public EReference getCompileUnit_Namespace() {
 		return (EReference) compileUnitEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompileUnit_Namspace() {
+		return (EAttribute) compileUnitEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1267,6 +1297,7 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__PATH);
 
 		typeEClass = createEClass(TYPE);
 
@@ -1295,6 +1326,7 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 		createEReference(compileUnitEClass, COMPILE_UNIT__TYPE_DECLARATION);
 		createEReference(compileUnitEClass, COMPILE_UNIT__USINGS);
 		createEReference(compileUnitEClass, COMPILE_UNIT__NAMESPACE);
+		createEAttribute(compileUnitEClass, COMPILE_UNIT__NAMSPACE);
 
 		elementRefEClass = createEClass(ELEMENT_REF);
 
@@ -1474,6 +1506,9 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedElement_Path(), ecorePackage.getEString(), "path", null, 0, 1, NamedElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1499,10 +1534,10 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 
 		initEClass(namespaceEClass, Namespace.class, "Namespace", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamespace_Classes(), this.getClassDeclaration(), null, "classes", null, 1, -1,
-				Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNamespace_Enumerations(), this.getEnumeration(), null, "enumerations", null, 1, -1,
+		initEReference(getNamespace_Classes(), this.getTypeDeclaration(), null, "classes", null, 0, -1, Namespace.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamespace_Enumerations(), this.getEnumeration(), null, "enumerations", null, 0, -1,
 				Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1532,6 +1567,8 @@ public class CSharpArchIdPackageImpl extends EPackageImpl implements CSharpArchI
 		initEReference(getCompileUnit_Namespace(), this.getNamespace(), null, "namespace", null, 0, 1,
 				CompileUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompileUnit_Namspace(), ecorePackage.getEString(), "namspace", null, 0, 1, CompileUnit.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementRefEClass, ElementRef.class, "ElementRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

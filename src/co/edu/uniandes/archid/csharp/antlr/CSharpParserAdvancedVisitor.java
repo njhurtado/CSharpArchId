@@ -1,20 +1,18 @@
 package co.edu.uniandes.archid.csharp.antlr;
 import java.util.List;
-import java.util.Stack;
 
 import org.antlr.v4.runtime.Token;
 // Generated from CSharpParser.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import org.eclipse.emf.ecore.EObject;
 
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.AbstractTypeDeclaration;
-import co.edu.uniandes.archid.csharp.model.cSharpArchId.Archive;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdFactory;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.ClassDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.ConstructorDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.ElementRef;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.InheritanceKind;
+import co.edu.uniandes.archid.csharp.model.cSharpArchId.InterfaceDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.MethodDeclaration;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.Model;
 import co.edu.uniandes.archid.csharp.model.cSharpArchId.Modifier;
@@ -42,25 +40,32 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	private CSharpArchIdFactory factory;
 	private CompileUnit cuParent;
 	private AbstractTypeDeclaration typeParent;
-	private co.edu.uniandes.archid.csharp.model.cSharpArchId.ASTNode parent;
+	//private co.edu.uniandes.archid.csharp.model.cSharpArchId.ASTNode parent;
 	private MethodDeclaration methodDeclParent;
+	private ConstructorDeclaration constDeclarationParent;
+	//private String projectName;
+	private String filePath;
 	
 	/**
 	 * Constructor for a new model.
 	 * @param modelName value of new model
 	 * @param cuName value of new Compile Unit.
 	 * */
-	public CSharpParserAdvancedVisitor(final String modelName, String fileName, String filePath) {
+	public CSharpParserAdvancedVisitor(final String modelName, String fileName, String filePath, String projectName) {
 		CSharpArchIdPackageImpl.init();
         // Retrieve the default factory singleton
-		
+		this.filePath = filePath.substring(filePath.indexOf(projectName));
+		this.filePath = this.filePath.replaceAll("\\", "/");
         // create an instance of myWeb
+		//this.projectName = projectName;
 		model = factory.createModel();
 		model.setName(modelName);
 		cuParent = factory.createCompileUnit();
 		cuParent.setName(fileName);
 		cuParent.setOriginalFilePath(filePath);
+		cuParent.setPath(this.filePath + "#L5");
 		model.getCompileUnits().add(cuParent);
+		
 	}
 	
 	/**
@@ -68,13 +73,22 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 * @param model value of existing model
 	 * @param cuName value of new Compile Unit.
 	 * */
-	public CSharpParserAdvancedVisitor(Model model, String fileName, String filePath) {
+	public CSharpParserAdvancedVisitor(Model model, String fileName, String filePath, String projectName) {
 		this.model = model;
 		factory = CSharpArchIdFactory.eINSTANCE;
+		if(filePath.indexOf("src") >= 0) {
+			this.filePath = filePath.substring(filePath.indexOf("src"));
+			this.filePath = this.filePath.replaceAll("\\\\", "/");
+		} else {
+			this.filePath = filePath;
+		}
+		
 		cuParent = factory.createCompileUnit();
 		cuParent.setName(fileName);
 		cuParent.setOriginalFilePath(filePath);
+		cuParent.setPath(this.filePath + "#L5");
 		model.getCompileUnits().add(cuParent);
+		//this.projectName = projectName;
 	}
 
 	
@@ -800,10 +814,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitMember_initializer(CSharpParser.Member_initializerContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Member_initializer -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -908,6 +922,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitGeneric_dimension_specifier(CSharpParser.Generic_dimension_specifierContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Generic_dimension_specifier -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
+		}
 		return visitChildren(ctx);
 	}
 
@@ -1513,20 +1531,32 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	@Override
 	public T visitLocal_variable_declaration(CSharpParser.Local_variable_declarationContext ctx) {
 		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Local_variable_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
+		}
 		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
 		Token tok = Util.getTokenAfterType(tokens,  CSharpParser.IDENTIFIER);
+		if(tok.getText().equals("=")) {
+			tok = Util.getSecondTokenWithType(tokens,  CSharpParser.IDENTIFIER);
+		}
 		//Si tiene el caracter ( es porque se trata de un metodo, de lo contrario es una atributo de clase 
 		SingleVariableDeclaration variableDecl = factory.createSingleVariableDeclaration();
+		variableDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
 		//El elemento referenciado el primer identificador, el segundo es el nombre de la variable
 		ElementRef ref = factory.createElementRef();
 		ref.setName(name);
-		variableDecl.setName(tok.getText());
+		if(tok != null) {
+			variableDecl.setName(name);
+			ref.setName(tok.getText());
+		} else {
+			variableDecl.setName(name);
+		}
 		variableDecl.setType(ref);
-		methodDeclParent.getLocalVariableDeclaration().add(variableDecl);
-		
-		/*for(Token t : tokens) {
-			System.out.println("Token Local_variable_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}*/
+		//variableDecl.setPath(this.filePath + "@" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+		if(methodDeclParent !=  null) {
+			methodDeclParent.getLocalVariableDeclaration().add(variableDecl);
+		}
+				
 		return visitChildren(ctx);
 	}
 
@@ -1816,15 +1846,12 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitUsing_directives(CSharpParser.Using_directivesContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		final List<Token> tokensUsing = Util.getTokensWithType(tokens, CSharpParser.IDENTIFIER);
-		for(Token t : tokensUsing) {
-			UsingDeclaration usingDecl = factory.createUsingDeclaration();
-			usingDecl.setName(t.getText());
-			cuParent.getUsings().add(usingDecl);
-			System.out.println("Se agrega Using_directives ->" + t.getText());
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Using_directives -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
+		}*/
+		
 			//System.out.println("Token Using_directives -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
-		}
 		//final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
 		
 		return visitChildren(ctx);
@@ -1859,6 +1886,22 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitUsingNamespaceDirective(CSharpParser.UsingNamespaceDirectiveContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*for(Token t : tokens) {
+			System.out.println("Token UsingNamespaceDirective -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
+		}*/
+		List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.SEMICOLON);
+		String nom = "";
+		for(Token t : tokensBeforeName) {
+			if(t.getType() == CSharpParser.IDENTIFIER || t.getType() == CSharpParser.DOT) {
+				nom += t.getText();
+			}
+		}
+		
+		UsingDeclaration usingDecl = factory.createUsingDeclaration();
+		usingDecl.setName(nom);
+		cuParent.getUsings().add(usingDecl);
+		System.out.println("Se agrega UsingNamespaceDirective ->" + nom);
 		return visitChildren(ctx);
 	}
 
@@ -1895,7 +1938,7 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 			Namespace namespace = factory.createNamespace();
 			namespace.setName(namespaceName.toString());
 			cuParent.setNamespace(namespace);
-			System.out.println("Se agrega Namespace_member_declarations -> " + namespaceName.toString());
+			cuParent.setNamspace(namespaceName.toString());
 		}
 		
 		return visitChildren(ctx);
@@ -1928,43 +1971,82 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_declaration(CSharpParser.Type_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		List<Token> tokens = Util.getFlatTokenList(ctx);
+		
+		/*List<List<Token>> tokensByRange = Util.getTokensByRange(tokens, CSharpParser.OPEN_BRACKET, CSharpParser.CLOSE_BRACKET);
+		
+		if(tokensByRange.isEmpty()) {
+			//Se obtienen los tokens que representan anotaciones pues vienen entre los caracteres []
+		}*/
+		
+		int indexOfToken = Util.getLastTokenIndex(tokens, CSharpParser.CLOSE_BRACKET,  CSharpParser.OPEN_BRACE);
+		if(indexOfToken > 0) {
+			tokens = Util.getTokensFromIndex(tokens, indexOfToken+1);
+		}
+		
+		/*for(Token t : tokens) {
+			System.out.println("Token Type_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
+		}*/
 		List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.IDENTIFIER);		
-		ClassDeclaration classDecl = factory.createClassDeclaration();
+		
 		final Token tokenName = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER);
 		final Token tokenSuperClass = Util.getTokenAfterType(tokens, CSharpParser.COLON);
-		classDecl.setName(tokenName.getText());
+		
 		Modifier modifier = factory.createModifier();
+		
+		boolean isClass = false;
+		boolean isInterface = false;
+
 		
 		for(Token t : tokensBeforeName) {
 			
 			if(VisibilityKind.get(t.getText()) != null){
-				System.out.println("modifer VisibilityKind ->" + t.getText());
+				//System.out.println("modifer VisibilityKind ->" + t.getText());
 				modifier.setVisibility(VisibilityKind.get(t.getText()));
 			}
 			if(InheritanceKind.get(t.getText()) != null){
-				System.out.println("modifier InheritanceKind ->" + t.getText());
+				//System.out.println("modifier InheritanceKind ->" + t.getText());
 				modifier.setInheritance(InheritanceKind.get(t.getText()));
 			}
 			if(ModifierKind.get(t.getText()) != null && ModifierKind.get(t.getText()).equals(CSharpParser.ABSTRACT)){
-				System.out.println("modifier ModifierKind ->" + t.getText());
+				//System.out.println("modifier ModifierKind ->" + t.getText());
 				modifier.setStatic(true);
 			} else {
 				modifier.setStatic(false);
 			}
-			
+			if(t.getType() == CSharpParser.INTERFACE) {
+				isInterface = true;
+			}
+			if(t.getType() == CSharpParser.CLASS) {
+				isClass = true;
+			}
 		}
 		
-		if(tokenSuperClass != null) {
-			ElementRef ref = factory.createElementRef();
-			ref.setName(tokenSuperClass.getText());
-			classDecl.setSuperClass(ref);
+		if(isClass) {
+			ClassDeclaration classDecl = factory.createClassDeclaration();
+			classDecl.setName(tokenName.getText());
+			if(tokenSuperClass != null) {
+				ElementRef ref = factory.createElementRef();
+				ref.setName(tokenSuperClass.getText());
+				classDecl.setSuperClass(ref);
+			}
+			classDecl.setModifier(modifier);
+			classDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+			cuParent.getElements().add(classDecl);
+			typeParent = classDecl;
+			System.out.println("Se adiciona Type_declaration -> " + tokenName.getText());
+		} else if (isInterface) {
+			InterfaceDeclaration classDecl = factory.createInterfaceDeclaration();
+			classDecl.setName(tokenName.getText());
+			classDecl.setModifier(modifier);
+			classDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+			cuParent.getElements().add(classDecl);
+			typeParent = classDecl;
+			System.out.println("Se adiciona Type_declaration -> " + tokenName.getText());
+		} else {
+			System.out.println("No se adiciona Type_declaration -> " + tokenName.getText());
 		}
 		
-		classDecl.setModifier(modifier);
-		System.out.println("Se adiciona Type_declaration -> " + tokenName.getText());
-		cuParent.getElements().add(classDecl);
-		typeParent = classDecl;
 		
 		return visitChildren(ctx);
 	}
@@ -1992,6 +2074,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_parameter_list(CSharpParser.Type_parameter_listContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Type_parameter_list -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
+		}
 		return visitChildren(ctx);
 	}
 
@@ -2005,6 +2091,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_parameter(CSharpParser.Type_parameterContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Type_parameter -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
+		}
 		return visitChildren(ctx);
 	}
 
@@ -2048,10 +2138,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_parameter_constraints_clauses(CSharpParser.Type_parameter_constraints_clausesContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Type_parameter_constraints_clauses -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2160,72 +2250,98 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitClass_member_declaration(CSharpParser.Class_member_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
-		List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.IDENTIFIER);
-		Modifier modifier = factory.createModifier();
-		ReturnType returnType = factory.createReturnType();
-		modifier.setStatic(false);
-		for(Token t : tokensBeforeName) {
-			
-			if(VisibilityKind.get(t.getText()) != null){
-				//System.out.println("modifer VisibilityKind ->" + t.getText());
-				modifier.setVisibility(VisibilityKind.get(t.getText()));
-			}
-			if(InheritanceKind.get(t.getText()) != null){
-				//System.out.println("modifier InheritanceKind ->" + t.getText());
-				modifier.setInheritance(InheritanceKind.get(t.getText()));
-			}
-			if(ModifierKind.get(t.getText()) != null){
-				//System.out.println("modifier ModifierKind ->" + t.getText());
-				modifier.setModifier(ModifierKind.get(t.getText()));
-			}
-			if(SimpleType.get(t.getText()) != null) {
-				returnType.setReturnType(SimpleType.get(t.getText()));
-				//System.out.println("returnType ->" + SimpleType.get(t.getText()));
-			}
-		}
-		
-		if(name.equals(typeParent.getName())) {
-			//Se trata del constructor
-			ConstructorDeclaration constDeclaration = factory.createConstructorDeclaration();
-			constDeclaration.setModifier(modifier);
-			constDeclaration.setName(name);
-			constDeclaration.setReturnType(returnType);
-			typeParent.getBodyDeclarations().add(constDeclaration);
-		} else {
-			Token tok = Util.getFirstTokenWithType(tokens, CSharpParser.OPEN_PARENS);
-			//Si tiene el caracter ( es porque se trata de un metodo, de lo contrario es una atributo de clase 
-			if(tok != null) {
-				MethodDeclaration methodDecl = factory.createMethodDeclaration();
-				methodDecl.setModifier(modifier);
-				methodDecl.setName(name);
-				methodDecl.setReturnType(returnType);
-				typeParent.getBodyDeclarations().add(methodDecl);
-				methodDeclParent = methodDecl;
-			} else {
-				SingleVariableDeclaration variableDecl = factory.createSingleVariableDeclaration();
-				//El elemento referenciado el primer identificador, el segundo es el nombre de la variable
-				ElementRef ref = factory.createElementRef();
-				
-				String varibleName = Util.getTokenBeforeType(tokens, CSharpParser.SEMICOLON).getText();
-				if(name.equals(varibleName)) {
-					//Si el identificador es igual al nombre del objeto es porque el tipo es un dato primitivo
-					varibleName = Util.getTokenBeforeType(tokens, CSharpParser.IDENTIFIER).getText();
-					//System.out.println("varibleName ->" + varibleName);
-					ref.setName(varibleName);
-					variableDecl.setName(name);
-				} else {
-					//System.out.println("diferentes ->" + varibleName);
-					ref.setName(name);
-					variableDecl.setName(varibleName);
+		List<Token> tokens = Util.getFlatTokenList(ctx);
+		//for(Token t : tokens) {
+			//System.out.println("Token Class_body -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
+		//}
+		//if(tokens != null && tokens.isEmpty() && Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER) != null) {
+		Token tokName = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER);
+		if(tokName != null) {
+			String name = tokName.getText();
+			if(Util.getFirstTokenWithType(tokens, CSharpParser.OPEN_BRACKET) != null) {
+				tokens = Util.removeTokensBetween(tokens, CSharpParser.OPEN_BRACKET, CSharpParser.CLOSE_BRACKET); 
+				//Si el token es un [ es un comentario y se debe buscar el nombre antes del caracter (
+				Token tk = Util.getTokenBeforeType(tokens, CSharpParser.OPEN_PARENS);
+				if(tk.getType() == CSharpParser.IDENTIFIER) {
+					name = tk.getText();
 				}
-				variableDecl.setModifier(modifier);
-				variableDecl.setType(ref);
-				typeParent.getBodyDeclarations().add(variableDecl);
 			}
+			
+			List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.IDENTIFIER);
+			Modifier modifier = factory.createModifier();
+			ReturnType returnType = factory.createReturnType();
+			modifier.setStatic(false);
+			for(Token t : tokensBeforeName) {
+				
+				if(VisibilityKind.get(t.getText()) != null){
+					//System.out.println("modifer VisibilityKind ->" + t.getText());
+					modifier.setVisibility(VisibilityKind.get(t.getText()));
+				}
+				if(InheritanceKind.get(t.getText()) != null){
+					//System.out.println("modifier InheritanceKind ->" + t.getText());
+					modifier.setInheritance(InheritanceKind.get(t.getText()));
+				}
+				if(ModifierKind.get(t.getText()) != null){
+					//System.out.println("modifier ModifierKind ->" + t.getText());
+					modifier.setModifier(ModifierKind.get(t.getText()));
+				}
+				if(SimpleType.get(t.getText()) != null) {
+					returnType.setReturnType(SimpleType.get(t.getText()));
+					//System.out.println("returnType ->" + SimpleType.get(t.getText()));
+				}
+			}
+			
+			if(name.equals(typeParent.getName())) {
+				//Se trata del constructor
+				ConstructorDeclaration constDeclaration = factory.createConstructorDeclaration();
+				constDeclaration.setModifier(modifier);
+				constDeclaration.setName(name);
+				constDeclaration.setReturnType(returnType);
+				constDeclaration.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+				typeParent.getBodyDeclarations().add(constDeclaration);
+				constDeclarationParent = constDeclaration;
+			} else {
+				Token tok = Util.getFirstTokenWithType(tokens, CSharpParser.OPEN_PARENS);
+				//Si tiene el caracter ( es porque se trata de un metodo, de lo contrario es una atributo de clase 
+				if(tok != null) {
+					MethodDeclaration methodDecl = factory.createMethodDeclaration();
+					methodDecl.setModifier(modifier);
+					methodDecl.setName(name);
+					methodDecl.setReturnType(returnType);
+					methodDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+					typeParent.getBodyDeclarations().add(methodDecl);
+					methodDeclParent = methodDecl;
+				} else {
+					SingleVariableDeclaration variableDecl = factory.createSingleVariableDeclaration();
+					//El elemento referenciado el primer identificador, el segundo es el nombre de la variable
+					ElementRef ref = factory.createElementRef();
+					
+					String varibleName = Util.getTokenBeforeType(tokens, CSharpParser.SEMICOLON).getText();
+					if(name.equals(varibleName)) {
+						//Si el identificador es igual al nombre del objeto es porque el tipo es un dato primitivo
+						Token tok2 =  Util.getTokenBeforeType(tokens, CSharpParser.IDENTIFIER);
+						if(tok2 != null) {
+							varibleName = tok2.getText();
+							//System.out.println("varibleName ->" + varibleName);
+							ref.setName(varibleName);
+							variableDecl.setName(name);
+						} else {
+							ref.setName(name);
+							variableDecl.setName(name);
+						}
+					} else {
+						//System.out.println("diferentes ->" + varibleName);
+						ref.setName(name);
+						variableDecl.setName(varibleName);
+					}
+					variableDecl.setModifier(modifier);
+					variableDecl.setType(ref);
+					variableDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
+					typeParent.getBodyDeclarations().add(variableDecl);
+				}
+			}
+			System.out.println("Se adicionó Class_member_declaration ->" + name);
 		}
-		System.out.println("Se adicionó Class_member_declaration ->" + name);
 		
 		return visitChildren(ctx);
 	}
@@ -2283,6 +2399,11 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitTyped_member_declaration(CSharpParser.Typed_member_declarationContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Typed_member_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText());
+		}
+		
 		return visitChildren(ctx);
 	}
 
@@ -2431,28 +2552,59 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	@Override
 	public T visitFixed_parameter(CSharpParser.Fixed_parameterContext ctx) {
 		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		/*for(Token t : tokens) {
+		for(Token t : tokens) {
 			System.out.println("Token Fixed_parameter -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}*/
+		}
 		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
 		List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.IDENTIFIER);
 		SingleVariableDeclaration variableDecl = factory.createSingleVariableDeclaration();
+		variableDecl.setPath(this.filePath + "#L" + Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getLine());
 		//El elemento referenciado el primer identificador, el segundo es el nombre de la variable
 		ElementRef ref = factory.createElementRef();
 		if(tokensBeforeName == null || tokensBeforeName.isEmpty()) {
 			//Si hay tokens antes del nombre corresponde a tipos primitivos
-			Token tok = Util.getTokenAfterType(tokens,  CSharpParser.IDENTIFIER);
-			//Si tiene el caracter ( es porque se trata de un metodo, de lo contrario es una atributo de clase 
-			ref.setName(name);
-			variableDecl.setName(tok.getText());
-			variableDecl.setType(ref);
+			Token tokEqual = Util.getTokenBeforeType(tokens,  CSharpParser.ASSIGNMENT);
+			if(tokEqual != null) {
+				ref.setName(name);
+				variableDecl.setName(tokEqual.getText());
+				variableDecl.setType(ref);
+			} else {
+				Token tok = Util.getLastTokenWithType(tokens,  CSharpParser.IDENTIFIER);
+				ref.setName(name);
+				variableDecl.setName(tok.getText());
+				variableDecl.setType(ref);
+			}
+			/*if(tok != null && tok.getType() == CSharpParser.LT) {
+				tok = Util.getLastTokenWithType(tokens,  CSharpParser.IDENTIFIER);
+				ref.setName(tok.getText());
+				variableDecl.setName(name);
+				variableDecl.setType(ref);
+			} else {
+				ref.setName(name);
+				variableDecl.setName(tok.getText());
+				variableDecl.setType(ref);
+			}*/
 		} else {
 			Token tok =tokensBeforeName.iterator().next();
-			ref.setName(tok.getText());
-			variableDecl.setName(name);
-			variableDecl.setType(ref);
+			if(tok != null && tok.getType() == CSharpParser.THIS) {
+				//si el token anterior es this, el nombre del parametro es el segundo identificador
+				tok = Util.getLastTokenWithType(tokens,  CSharpParser.IDENTIFIER);
+				ref.setName(name);
+				variableDecl.setName(tok.getText());
+				variableDecl.setType(ref);
+			} else {
+				ref.setName(tok.getText());
+				variableDecl.setName(name);
+				variableDecl.setType(ref);
+			}
 		}
-		methodDeclParent.getParameters().add(variableDecl);
+		if(methodDeclParent != null) {
+			methodDeclParent.getParameters().add(variableDecl);
+			//typeParent.getBodyDeclarations().add(methodDeclParent);
+		} else if (constDeclarationParent != null) {
+			constDeclarationParent.getParameters().add(variableDecl);
+			//typeParent.getBodyDeclarations().add(constDeclarationParent);
+		}
 		System.out.println("Se adicionó Fixed_parameter ->" + name);
 		return visitChildren(ctx);
 	}
@@ -2772,6 +2924,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitVariance_annotation(CSharpParser.Variance_annotationContext ctx) {
+		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		for(Token t : tokens) {
+			System.out.println("Token Variance_annotation -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
+		}
 		return visitChildren(ctx);
 	}
 
@@ -2914,10 +3070,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitAttributes(CSharpParser.AttributesContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Attributes -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2957,10 +3113,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitAttribute_list(CSharpParser.Attribute_listContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Attribute_list -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -3234,9 +3390,9 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitClass_definition(CSharpParser.Class_definitionContext ctx) {
-		co.edu.uniandes.archid.csharp.model.cSharpArchId.ClassDeclaration clase = factory.createClassDeclaration();
+		/*co.edu.uniandes.archid.csharp.model.cSharpArchId.ClassDeclaration clase = factory.createClassDeclaration();
 		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		/*for(Token t : tokens) {
+		for(Token t : tokens) {
 			System.out.println("Token Class_definition -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
 		}
 		cuParent.setTypeDeclaration(clase);

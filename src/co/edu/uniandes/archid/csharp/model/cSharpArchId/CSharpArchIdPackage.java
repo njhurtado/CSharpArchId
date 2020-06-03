@@ -179,13 +179,22 @@ public interface CSharpArchIdPackage extends EPackage {
 	int NAMED_ELEMENT__NAME = AST_NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__PATH = AST_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -223,6 +232,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL__PATH = NAMED_ELEMENT__PATH;
 
 	/**
 	 * The number of structural features of the '<em>Enumeration Literal</em>' class.
@@ -271,6 +289,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int TYPE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__PATH = NAMED_ELEMENT__PATH;
+
+	/**
 	 * The number of structural features of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,6 +342,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION__NAME = TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION__PATH = TYPE__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Enum Literals</b></em>' containment reference list.
@@ -370,6 +406,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_TYPE_DECLARATION__NAME = TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TYPE_DECLARATION__PATH = TYPE__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Comments Before Body</b></em>' containment reference list.
@@ -454,6 +499,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int TYPE_DECLARATION__NAME = ABSTRACT_TYPE_DECLARATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_DECLARATION__PATH = ABSTRACT_TYPE_DECLARATION__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Comments Before Body</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -534,6 +588,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_DECLARATION__NAME = TYPE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DECLARATION__PATH = TYPE_DECLARATION__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Comments Before Body</b></em>' containment reference list.
@@ -627,6 +690,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int INTERFACE_DECLARATION__NAME = TYPE_DECLARATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE_DECLARATION__PATH = TYPE_DECLARATION__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Comments Before Body</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -709,6 +781,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int PRIMITIVE_TYPE__NAME = TYPE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__PATH = TYPE__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,6 +843,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMESPACE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__PATH = NAMED_ELEMENT__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -828,6 +918,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int METHOD_PARAMETER__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER__PATH = NAMED_ELEMENT__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -881,6 +980,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPILE_UNIT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPILE_UNIT__PATH = NAMED_ELEMENT__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -937,13 +1045,22 @@ public interface CSharpArchIdPackage extends EPackage {
 	int COMPILE_UNIT__NAMESPACE = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Namspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPILE_UNIT__NAMSPACE = NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Compile Unit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPILE_UNIT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int COMPILE_UNIT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Compile Unit</em>' class.
@@ -981,6 +1098,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_REF__NAME = TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_REF__PATH = TYPE__PATH;
 
 	/**
 	 * The number of structural features of the '<em>Element Ref</em>' class.
@@ -1027,6 +1153,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHIVE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHIVE__PATH = NAMED_ELEMENT__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Original File Path</b></em>' attribute.
@@ -1091,6 +1226,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int USING_DECLARATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USING_DECLARATION__PATH = NAMED_ELEMENT__PATH;
 
 	/**
 	 * The number of structural features of the '<em>Using Declaration</em>' class.
@@ -1351,6 +1495,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int BODY_DECLARATION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BODY_DECLARATION__PATH = NAMED_ELEMENT__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1543,6 +1696,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int ABSTRACT_METHOD_DECLARATION__NAME = BODY_DECLARATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_METHOD_DECLARATION__PATH = BODY_DECLARATION__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1717,6 +1879,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int VARIABLE_DECLARATION__NAME = BODY_DECLARATION__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION__PATH = BODY_DECLARATION__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1788,6 +1959,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_VARIABLE_DECLARATION__PATH = VARIABLE_DECLARATION__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
@@ -1863,6 +2043,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int TYPE_PARAMETER__NAME = TYPE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_PARAMETER__PATH = TYPE__PATH;
+
+	/**
 	 * The number of structural features of the '<em>Type Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1907,6 +2096,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int METHOD_DECLARATION__NAME = ABSTRACT_METHOD_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_DECLARATION__PATH = ABSTRACT_METHOD_DECLARATION__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
@@ -2016,6 +2214,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRUCTOR_DECLARATION__NAME = ABSTRACT_METHOD_DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_DECLARATION__PATH = ABSTRACT_METHOD_DECLARATION__PATH;
 
 	/**
 	 * The feature id for the '<em><b>Modifier</b></em>' containment reference.
@@ -2402,6 +2609,15 @@ public interface CSharpArchIdPackage extends EPackage {
 	int RETURN_TYPE__NAME = TYPE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RETURN_TYPE__PATH = TYPE__PATH;
+
+	/**
 	 * The feature id for the '<em><b>Return Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2541,6 +2757,17 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.NamedElement#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.NamedElement#getPath()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Path();
 
 	/**
 	 * Returns the meta object for class '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.Type <em>Type</em>}'.
@@ -2753,6 +2980,17 @@ public interface CSharpArchIdPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompileUnit_Namespace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getNamspace <em>Namspace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Namspace</em>'.
+	 * @see co.edu.uniandes.archid.csharp.model.cSharpArchId.CompileUnit#getNamspace()
+	 * @see #getCompileUnit()
+	 * @generated
+	 */
+	EAttribute getCompileUnit_Namspace();
 
 	/**
 	 * Returns the meta object for class '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.ElementRef <em>Element Ref</em>}'.
@@ -3490,6 +3728,14 @@ public interface CSharpArchIdPackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__PATH = eINSTANCE.getNamedElement_Path();
+
+		/**
 		 * The meta object literal for the '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.TypeImpl <em>Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3664,6 +3910,14 @@ public interface CSharpArchIdPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPILE_UNIT__NAMESPACE = eINSTANCE.getCompileUnit_Namespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Namspace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPILE_UNIT__NAMSPACE = eINSTANCE.getCompileUnit_Namspace();
 
 		/**
 		 * The meta object literal for the '{@link co.edu.uniandes.archid.csharp.model.cSharpArchId.impl.ElementRefImpl <em>Element Ref</em>}' class.

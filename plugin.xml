@@ -6,12 +6,29 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated cSharpArchId -->
+   <!--extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.example.org/cSharpArchId"
             class="co.edu.uniandes.archid.csharp.model.cSharpArchId.CSharpArchIdPackage"
             genModel="model/cSharpArchId.genmodel"/>
+   </extension-->
+   
+   <extension
+         point="org.eclipse.epsilon.common.dt.tool">
+      <tool
+            class="co.edu.uniandes.archid.tools.IssuesTool"
+            defaultName="IssuesTool">
+      </tool>
+   </extension>
+   <extension
+         id="csharparchid"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            visible="true">
+         <run
+               class="co.edu.uniandes.archid.Application">
+         </run>
+      </application>
    </extension>
 
 </plugin>

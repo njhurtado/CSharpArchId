@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rules:ReferenceArchitecture xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Rules="https://www.uniandes.edu.co/csharparchid" umlModel="desarrollo">
+  <structuralElements umlElement="naming"/>
+  <structuralElements umlElement="structural"/>
+  <structuralElements umlElement="architectural"/>
+  <structuralElements umlElement="entities"/>
+  <decisions title="Naming Usage" associatedQA="//@attributes.0">
+    <rules title="Class name must be in PascalCase." debt="10" severity="Major" structuralElement="//@structuralElements.1" id="1" category="Bug"/>
+    <rules title="Method name must be in PascalCase." debt="10" severity="Major" structuralElement="//@structuralElements.1" id="2" category="Bug"/>
+    <rules title="Parameter name must be in CamelCase." debt="10" severity="Major" structuralElement="//@structuralElements.1" id="3" category="Bug"/>
+    <rules title="Classes of Service type must include Service suffix as part of its name" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="4" category="Bug"/>
+    <rules title="Classes of Controller type must include Controller suffix as part of its name" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="5" category="Bug"/>
+    <rules title="Interfaces type must include Interface suffix as part of its name, an it must start with I" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="6" category="Bug"/>
+    <rules title="Classes of Data Config type must include Configuration suffix as part of its name" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="7" category="Bug"/>
+    <rules title="Classes of Entity type must include Identity suffix as part of its name" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="8" category="Bug"/>
+    <rules title="Classes of Specification type must include Specification suffix as part of its name" debt="10" severity="Major" structuralElement="//@structuralElements.0" id="9" category="Bug"/>
+  </decisions>
+  <decisions title="Structural Usage" associatedQA="//@attributes.0">
+    <rules title="More than one class per file isn't allowed" debt="10" severity="Major" structuralElement="//@structuralElements.2" id="10" category="Bug"/>
+  </decisions>
+  <decisions title="Layered Architecture" associatedQA="//@attributes.1">
+    <rules title="Classes of Controller type must implement Controller interface" debt="10" severity="Major" structuralElement="//@structuralElements.3" id="11" category="Bug"/>
+    <rules title="Classes of Controller type must use Microsoft.eShopWeb.Infrastructure.Identity namespace to acces business logic" debt="10" severity="Major" structuralElement="//@structuralElements.3" id="12" category="Bug"/>
+    <rules title="Classes of Service type must implement its own interface" debt="10" severity="Major" structuralElement="//@structuralElements.3" id="13" category="Bug"/>
+  </decisions>
+  <attributes name="maintainability"/>
+  <attributes name="modularity"/>
+</Rules:ReferenceArchitecture>
