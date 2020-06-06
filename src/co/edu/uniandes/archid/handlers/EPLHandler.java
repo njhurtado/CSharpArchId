@@ -51,7 +51,7 @@ public class EPLHandler {
 		models = new ArrayList<IModel>();
 		try {
 			System.out.println("Running pattern on source.");
-			models.add(EpsilonStandalone.createEmfModel("Model", "CSharpArchId.model",
+			models.add(EpsilonStandalone.createEmfModel("Model", "E:\\models\\CSharpArchId.model",
 					"epl/cSharpArchId.ecore", true, true));
 			models.add(EpsilonStandalone.createEmfModel("rulesModel", "epl/ReferenceArchitecture.xmi",
 					"epl/rules.ecore", true, true));

@@ -70,7 +70,7 @@ public class ModelHandler {
 
 	        // create a resource
 	        Resource resource = resSet.createResource(URI
-	                .createFileURI("E:\\uniandes\\202001\\proyecto integrador\\proyecto\\CSharpArchId\\CSharpArchId.model"));
+	                .createFileURI("E:\\models\\CSharpArchId.model"));
 	        // Get the first model element and cast it to the right type, in my
 	        // example everything is hierarchical included in this first node
 	        

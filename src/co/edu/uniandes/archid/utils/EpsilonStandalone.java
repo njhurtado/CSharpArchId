@@ -9,6 +9,7 @@
  */
 package co.edu.uniandes.archid.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -104,7 +105,12 @@ public abstract class EpsilonStandalone {
 		StringProperties properties = new StringProperties();
 		properties.put(EmfModel.PROPERTY_NAME, name);
 		properties.put(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI, getFileURI(metamodel));
-		properties.put(EmfModel.PROPERTY_MODEL_URI, getFileURI(model));
+		if(model.endsWith(".model")) {
+			//Si se trata del modelo generado se carga desde el archivo, de lo contrario se carga de los archivos incluidos en el plugin
+			properties.put(EmfModel.PROPERTY_MODEL_URI, getURIFromFile(model));
+		} else {
+			properties.put(EmfModel.PROPERTY_MODEL_URI, getFileURI(model));
+		}
 		properties.put(EmfModel.PROPERTY_READONLOAD, readOnLoad + "");
 		properties.put(EmfModel.PROPERTY_STOREONDISPOSAL, storeOnDisposal + "");
 		emfModel.load(properties, (IRelativePathResolver) null);
@@ -129,6 +135,15 @@ public abstract class EpsilonStandalone {
 		Bundle bundle = Platform.getBundle("co.edu.uniandes.archid");
 		if(FileLocator.find(bundle, new Path(fileName), null) != null) {
 			return FileLocator.find(bundle, new Path(fileName), null).toURI();
+		} 
+		return null;
+	}
+	
+	private static URI getURIFromFile(String fileName) throws URISyntaxException, IOException {
+		System.out.println("Archivo -> " + fileName);
+		File f = new File(fileName);
+		if(f != null) {
+			return f.toURI();
 		} 
 		return null;
 	}

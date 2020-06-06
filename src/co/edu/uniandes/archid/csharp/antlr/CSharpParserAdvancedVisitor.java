@@ -922,10 +922,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitGeneric_dimension_specifier(CSharpParser.Generic_dimension_specifierContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Generic_dimension_specifier -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -1531,9 +1531,9 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	@Override
 	public T visitLocal_variable_declaration(CSharpParser.Local_variable_declarationContext ctx) {
 		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		for(Token t : tokens) {
+		/*for(Token t : tokens) {
 			System.out.println("Token Local_variable_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
 		Token tok = Util.getTokenAfterType(tokens,  CSharpParser.IDENTIFIER);
 		if(tok.getText().equals("=")) {
@@ -1867,11 +1867,11 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitUsingAliasDirective(CSharpParser.UsingAliasDirectiveContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token UsingAliasDirective -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
 		}
-		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
+		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();*/
 		//System.out.println("UsingAliasDirective ->" + name);
 		return visitChildren(ctx);
 	}
@@ -2074,10 +2074,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_parameter_list(CSharpParser.Type_parameter_listContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Type_parameter_list -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2091,10 +2091,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitType_parameter(CSharpParser.Type_parameterContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Type_parameter -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type: " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2399,10 +2399,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitTyped_member_declaration(CSharpParser.Typed_member_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Typed_member_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText());
-		}
+		}*/
 		
 		return visitChildren(ctx);
 	}
@@ -2495,10 +2495,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitMember_name(CSharpParser.Member_nameContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Member_name -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2552,9 +2552,9 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	@Override
 	public T visitFixed_parameter(CSharpParser.Fixed_parameterContext ctx) {
 		final List<Token> tokens = Util.getFlatTokenList(ctx);
-		for(Token t : tokens) {
+		/*for(Token t : tokens) {
 			System.out.println("Token Fixed_parameter -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		final String name = Util.getFirstTokenWithType(tokens, CSharpParser.IDENTIFIER).getText();
 		List<Token> tokensBeforeName = Util.getTokensBeforeType(tokens, CSharpParser.IDENTIFIER);
 		SingleVariableDeclaration variableDecl = factory.createSingleVariableDeclaration();
@@ -2619,10 +2619,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitParameter_modifier(CSharpParser.Parameter_modifierContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Parameter_modifier -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2649,10 +2649,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitAccessor_declarations(CSharpParser.Accessor_declarationsContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Accessor_declarations -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2666,10 +2666,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitGet_accessor_declaration(CSharpParser.Get_accessor_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Get_accessor_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2683,10 +2683,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitSet_accessor_declaration(CSharpParser.Set_accessor_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Set_accessor_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2924,10 +2924,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitVariance_annotation(CSharpParser.Variance_annotationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Variance_annotation -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -2967,10 +2967,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitInterface_member_declaration(CSharpParser.Interface_member_declarationContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Interface_member_declaration -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -3036,10 +3036,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitGlobal_attribute_section(CSharpParser.Global_attribute_sectionContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Global_attribute_section -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -3053,10 +3053,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitGlobal_attribute_target(CSharpParser.Global_attribute_targetContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Global_attribute_target -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 
@@ -3463,10 +3463,10 @@ public class CSharpParserAdvancedVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 */
 	@Override
 	public T visitDelegate_definition(CSharpParser.Delegate_definitionContext ctx) {
-		final List<Token> tokens = Util.getFlatTokenList(ctx);
+		/*final List<Token> tokens = Util.getFlatTokenList(ctx);
 		for(Token t : tokens) {
 			System.out.println("Token Delegate_definition -> Linea: " + t.getLine() + " Texto: " + t.getText() + " Type " + t.getType());
-		}
+		}*/
 		return visitChildren(ctx);
 	}
 

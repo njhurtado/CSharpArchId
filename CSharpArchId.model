@@ -641,7 +641,7 @@
         <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="query" path="src/ApplicationCore/Helpers/Query/IncludeQueryExtensions.cs#L45">
           <type xsi:type="cSharpArchId:ElementRef" name="IIncludeQuery"/>
         </parameters>
-        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="Selector" path="src/ApplicationCore/Helpers/Query/IncludeQueryExtensions.cs#L46">
+        <parameters xsi:type="cSharpArchId:SingleVariableDeclaration" name="selector" path="src/ApplicationCore/Helpers/Query/IncludeQueryExtensions.cs#L46">
           <type xsi:type="cSharpArchId:ElementRef" name="Expression"/>
         </parameters>
         <returnType xsi:type="cSharpArchId:ReturnType"/>

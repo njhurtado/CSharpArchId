@@ -33,6 +33,6 @@ Import-Package: org.eclipse.m2e.core,
 Bundle-ClassPath: org.eclipse.egit.github.core-2.1.5.jar,
  gson-2.8.5.jar,
  github-api-1.95.jar,
- lib/antlr-4.8-complete.jar,
+ antlr-4.8-complete.jar,
  .,
  epl/
